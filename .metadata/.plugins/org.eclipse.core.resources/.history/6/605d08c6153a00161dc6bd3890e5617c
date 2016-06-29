@@ -1,0 +1,35 @@
+package day8;
+
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class multiplewindowops {
+
+	public static void main(String[] args) 
+	{
+		WebDriver driver=new FirefoxDriver();
+		driver.get("http://gmail.com");
+		driver.manage().window().maximize();
+		driver.findElement(By.linkText("Terms")).click();
+		
+//		driver.findElement(By.linkText("Terms of Service")).click();
+		
+		Set<String> windowid=driver.getWindowHandles();
+		
+		System.out.println(windowid.size());
+		
+		Iterator<String> it=windowid.iterator();
+		while (it.hasNext()) 
+		{
+			String window = it.next();
+			System.out.println(window);
+			
+		}
+		
+	}
+
+}
